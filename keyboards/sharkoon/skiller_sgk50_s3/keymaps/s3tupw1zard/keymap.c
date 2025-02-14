@@ -272,12 +272,12 @@ bool rgb_matrix_indicators_user(void) {
             rgb_matrix_set_color(77, music_active ? 0 : 255, music_active ? 255 : 0, music_active ? 0 : 0);
             break;
         case 2:
-            rgb_matrix_set_color(13, 255, 255, 0); // Key: N
-            rgb_matrix_set_color(14, 255, 255, 0); // Key: M
-            rgb_matrix_set_color(20, 255, 255, 0); // Key: A
-            rgb_matrix_set_color(46, 255, 255, 0); // Key: E
-            rgb_matrix_set_color(39, 255, 255, 0); // Key: P
-            rgb_matrix_set_color(58, 255, 255, 0); // Key: 0
+            rgb_matrix_set_color(13, 0, 0, 255); // Key: N
+            rgb_matrix_set_color(14, 0, 0, 255); // Key: M
+            rgb_matrix_set_color(20, 0, 0, 255); // Key: A
+            rgb_matrix_set_color(46, 0, 0, 255); // Key: E
+            rgb_matrix_set_color(39, 0, 0, 255); // Key: P
+            rgb_matrix_set_color(58, 0, 0, 255); // Key: 0
 
             // Highlight last pressed key on Layer 2 (Red)
             if (last_pressed_layer2 != 255) {
