@@ -352,5 +352,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 void keyboard_post_init_user(void) {
-    rgb_matrix_mode(RGB_MATRIX_RAINBOW_BEACON);
+    rgb_matrix_mode(RGB_MATRIX_RAINBOW_BEACON); // Set the effect to Rainbow Beacon
+    rgb_matrix_set_speed(100); // Set speed to 100 (0 = slow, 255 = fast)
 }
