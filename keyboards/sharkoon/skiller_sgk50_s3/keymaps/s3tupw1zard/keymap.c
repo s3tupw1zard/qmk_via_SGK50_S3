@@ -231,11 +231,11 @@ bool rgb_matrix_indicators_user(void) {
 
             // Set colors for F1 to F6
             rgb_matrix_set_color(77, 255, 0, 0);
-            rgb_matrix_set_color(76, 0, 0, 255);
+            rgb_matrix_set_color(76, 0, 255, 0);
             rgb_matrix_set_color(75, 0, 255, 0);
             rgb_matrix_set_color(74, 255, 0, 0);
             rgb_matrix_set_color(73, 0, 0, 255);
-            rgb_matrix_set_color(72, 0, 255, 0);
+            rgb_matrix_set_color(72, 0, 0, 255);
 
             // Set all F13-F18 to red
             rgb_matrix_set_color(49, 255, 0, 0);
@@ -252,14 +252,6 @@ bool rgb_matrix_indicators_user(void) {
             rgb_matrix_set_color(22, 0, 0, 255);
             rgb_matrix_set_color(44, 0, 0, 255);
             rgb_matrix_set_color(40, 0, 0, 255);
-
-            // Set colors for F2 and F3
-            rgb_matrix_set_color(76, 0, 255, 0);
-            rgb_matrix_set_color(75, 0, 0, 255);
-
-            // Set colors for F4 and F5
-            rgb_matrix_set_color(74, 0, 255, 0);
-            rgb_matrix_set_color(73, 0, 0, 255);
 
             // Set color for last pressed key
             if (last_pressed_f13_f18 != 255) {
@@ -318,31 +310,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case KC_F24: last_pressed_f19_f24 = 40; break;
 
             case QK_MIDI_NOTE_C_0:
-                // Minecraft-Profil aktivieren
                 current_profile = PROFILE_MINECRAFT;
                 last_pressed_layer2 = 13;
                 break;
 
             case QK_MIDI_NOTE_C_SHARP_0:
-                // No Man’s Sky-Profil aktivieren
                 current_profile = PROFILE_NMS;
                 last_pressed_layer2 = 14;
                 break;
 
             case QK_MIDI_NOTE_D_SHARP_0:
-                // No Man’s Sky-Profil aktivieren
                 current_profile = PROFILE_ASKA;
                 last_pressed_layer2 = 20;
                 break;
 
             case QK_MIDI_NOTE_E_0:
-                // No Man’s Sky-Profil aktivieren
                 current_profile = PROFILE_ELDEN_RING;
                 last_pressed_layer2 = 46;
                 break;
 
             case QK_MIDI_NOTE_D_0:
-                // No Man’s Sky-Profil aktivieren
                 current_profile = PROFILE_PALWORLD;
                 last_pressed_layer2 = 39;
                 break;
