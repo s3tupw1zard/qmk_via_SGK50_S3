@@ -33,7 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [1] = LAYOUT_all(
-        EE_CLR,  KC_MPLY, KC_MPRV, KC_MNXT, KC_MUTE,  KC_VOLD, KC_VOLU, _______,  _______,  _______, KC_PSCR, KC_SCRL, KC_PAUS, _______, _______, _______,
+        EE_CLR,  KC_MPLY, KC_MPRV, KC_MNXT, KC_MUTE,  KC_VOLD, KC_VOLU, _______,  _______,  _______, KC_PSCR, KC_SCRL, KC_PAUS, RM_VALD, RM_VALU, _______,
         _______, KC_F13,  KC_F14,  KC_F15,  KC_F16,   KC_F17,  KC_F18,  _______,  _______,  _______, _______, RM_SPDD, RM_SPDU, _______,          RM_SATU,
         _______, _______, _______, _______, _______,  KC_F23,  _______, _______,  _______,  KC_F24,  _______, _______, _______, _______,          RM_SATD,
         _______, _______, KC_F21,  KC_F22,  _______,  _______, _______, _______,  _______,  _______, _______, _______,          _______,          _______,
@@ -214,9 +214,9 @@ bool rgb_matrix_indicators_user(void) {
                 rgb_matrix_set_color(8, 0, 0, 255); // Up
 
                 if (host_keyboard_led_state().caps_lock) {
-                    rgb_matrix_set_color(81, 255, 0, 0);  // Set caps lock to red when pressed
+                    rgb_matrix_set_color(81, 255, 0, 0);  // Set caps lock to red when locked
                 } else {
-                    rgb_matrix_set_color(81, 0, 255, 0); // Set caps lock to blue when not pressed
+                    rgb_matrix_set_color(81, 0, 255, 0); // Set caps lock to blue when not locked
                 }
                 break;
 
@@ -226,10 +226,14 @@ bool rgb_matrix_indicators_user(void) {
         break;
 
         case 1:
-            // Set ESC to red
+            // Set Insert and Pos1 Key Color (Mapped to RM_VALD and RM_VALU for changing rgb lighting brightness)
+            rgb_matrix_set_color(65, 0, 255, 0);
+            rgb_matrix_set_color(64, 0, 255, 0);
+
+            // Set ESC to red (Mapped to EE_CLR, can be used to go to bootloader when long pressed)
             rgb_matrix_set_color(78, 255, 0, 0);
 
-            // Set colors for F1 to F6
+            // Set colors for F1 to F6 (Media Control)
             rgb_matrix_set_color(77, 255, 0, 0);
             rgb_matrix_set_color(76, 0, 255, 0);
             rgb_matrix_set_color(75, 0, 255, 0);
@@ -237,7 +241,7 @@ bool rgb_matrix_indicators_user(void) {
             rgb_matrix_set_color(73, 0, 0, 255);
             rgb_matrix_set_color(72, 0, 0, 255);
 
-            // Set all F13-F18 to red
+            // Set all F13-F18 to red (rgb ids are the keys printed on the keyboard, so not F13-F18 but 1-6 in my case)
             rgb_matrix_set_color(49, 255, 0, 0);
             rgb_matrix_set_color(50, 255, 0, 0);
             rgb_matrix_set_color(51, 255, 0, 0);
@@ -245,7 +249,7 @@ bool rgb_matrix_indicators_user(void) {
             rgb_matrix_set_color(53, 255, 0, 0);
             rgb_matrix_set_color(54, 255, 0, 0);
 
-            // Set all F19-F24 to blue
+            // Set all F19-F24 to blue (set to some letters on the keyboard used for macros)
             rgb_matrix_set_color(17, 0, 0, 255);
             rgb_matrix_set_color(13, 0, 0, 255);
             rgb_matrix_set_color(21, 0, 0, 255);
@@ -353,5 +357,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 void keyboard_post_init_user(void) {
     rgb_matrix_mode(RGB_MATRIX_RAINBOW_BEACON); // Set the effect to Rainbow Beacon
-    rgb_matrix_set_speed(100); // Set speed to 100 (0 = slow, 255 = fast)
+    rgb_matrix_set_speed(80); // Set speed to 100 (0 = slow, 255 = fast)
+
+    hsv_t hsv = rgb_matrix_get_hsv();
+    hsv.v = 130;  // Set brightness
+    rgb_matrix_sethsv(hsv.h, hsv.s, hsv.v);
 }
